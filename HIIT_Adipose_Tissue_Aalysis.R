@@ -34,9 +34,9 @@ library('tidygraph')
 library('eulerr')
 library('corrplot')
 library('dendextend')
-library(foreach)
-library(parallel)
-library(doParallel)
+library('foreach')
+library('parallel')
+library('doParallel')
 setwd("/Users/Gerard/Desktop/")
 #### Functions ####
 #' Z normalization of the data by column
@@ -305,8 +305,6 @@ ggplot() +
   
 #imputation
 set.seed(123)
-Exprs_adipose_imputed <- scImpute(Exprs_adipose_notImputed, 0.7, combined)
-Exprs_adipose_imputed <- tImpute(Exprs_adipose_imputed, m=1.6, s=0.6)
 Exprs_adipose_imputed_allLow <- tImpute(Exprs_adipose_notImputed, m=1.6, s=0.6)
 Exprs_adipose <- Exprs_adipose_notImputed
 #### Plot Imputation ####
@@ -473,7 +471,7 @@ qqplot6 <- ggplot(mapping = aes(sample = Exprs_adipose_notImputed[,Sample6_selec
 ggarrange(qqplot1,qqplot2,qqplot3,qqplot4,qqplot5,qqplot6)
 
 #### Reproducibility ####
-try <- Exprs_adipose_imputed[,order(grps)]
+try <- Exprs_adipose_imputed_allLow[,order(grps)]
 colnames(try) <- paste0(combined[order(grps)],"_", df$replicate[order(grps)])
 
 Correlation_matrix <- cor(try, method = "pearson")
@@ -1128,7 +1126,7 @@ colnames(new.data.send)[114:124] <- c("Interaction.Obese.vs.Lean.LogFC","Interac
                                        "Interaction.T2D.vs.Obese.LogFC","Interaction.T2D.vs.Obese.Pval","Interaction.T2D.vs.Obese.Xiao correction",
                                        "Interaction.main.Pval","Interaction.main.adj Pval")
 
-new.data.send <- cbind(new.data.send, row.names(Exprs_adipose_imputed), geneSymbols)
+new.data.send <- cbind(new.data.send, row.names(Exprs_adipose_imputed_allLow), geneSymbols)
 colnames(new.data.send)[125:126] <- c("Protein Names", "Gene Names") 
 
 namesprot <- cbind(clinical_data[,2], paste(clinical_data$ID,clinical_data$Condition, sep = "_"))
