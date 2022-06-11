@@ -105,8 +105,8 @@ enrichment_1D_parallel <- function(matrix_values, Log_vec){
 #' 2D annotation enrichment analysis parallelized
 #' 
 #' @param matrix1 a matrix with the following columns 1st Annotation, 2nd Protein Name(protein has to be repeated as many times as annotations it has)
-#' @param Log_vec_1 a matrix with the first colomn having the protein and the second the values to be enriched (LogFC, pValue, etc.) 
-#' @param Log_vec_2 a matrix with the first colomn having the protein and the second the values to be enriched (LogFC, pValue, etc.) 
+#' @param Log_vec_1 a matrix with the first colomn having the protein and the second the values  (LogFC, pValue, etc.) 
+#' @param Log_vec_2 a matrix with the first colomn having the protein and the second the values  (LogFC, pValue, etc.) 
 #' @param pval_cutoff a number representing the p-value cutoff to be used
 #' @return a matrix with the first column having the enrichment scores for the first group, the second column has the enrichment scores for the second group, the third column has the annotation name
 #' @example 
